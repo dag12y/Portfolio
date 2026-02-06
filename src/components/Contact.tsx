@@ -130,202 +130,235 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-secondary/10">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl mb-6">Get In Touch</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              I'm always interested in new opportunities and exciting projects. 
-              Let's discuss how we can work together!
-            </p>
-          </div>
+      <section id="contact" className="py-20 bg-secondary/10">
+          <div className="container mx-auto px-4">
+              <div className="max-w-6xl mx-auto">
+                  <div className="text-center mb-16">
+                      <h2 className="text-3xl md:text-4xl lg:text-5xl mb-6">
+                          Get In Touch
+                      </h2>
+                      <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                          I'm always interested in new opportunities and
+                          exciting projects. Let's discuss how we can work
+                          together!
+                      </p>
+                  </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle>Send Me a Message</CardTitle>
-                <CardDescription>
-                  Fill out the form below and I'll get back to you as soon as possible.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Name *</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      disabled={isSubmitting}
-                      placeholder="Your full name"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      disabled={isSubmitting}
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject *</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      disabled={isSubmitting}
-                      placeholder="What's this about?"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message *</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      disabled={isSubmitting}
-                      rows={5}
-                      placeholder="Tell me about your project or inquiry..."
-                    />
-                  </div>
-                  
-                  {/* Status Messages */}
-                  {submitStatus === 'success' && (
-                    <Alert className="border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-200">
-                      <CheckCircle className="h-4 w-4" />
-                      <AlertDescription>{statusMessage}</AlertDescription>
-                    </Alert>
-                  )}
-                  
-                  {submitStatus === 'error' && (
-                    <Alert className="border-red-200 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-200">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertDescription>{statusMessage}</AlertDescription>
-                    </Alert>
-                  )}
-                  
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-4 w-4" />
-                        Send Message
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                  <div className="grid lg:grid-cols-2 gap-12">
+                      {/* Contact Form */}
+                      <Card className="hover:shadow-lg transition-shadow">
+                          <CardHeader>
+                              <CardTitle>Send Me a Message</CardTitle>
+                              <CardDescription>
+                                  Fill out the form below and I'll get back to
+                                  you as soon as possible.
+                              </CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                              <form
+                                  onSubmit={handleSubmit}
+                                  className="space-y-6"
+                              >
+                                  <div className="space-y-2">
+                                      <Label htmlFor="name">Name *</Label>
+                                      <Input
+                                          id="name"
+                                          name="name"
+                                          value={formData.name}
+                                          onChange={handleChange}
+                                          required
+                                          disabled={isSubmitting}
+                                          placeholder="Your full name"
+                                      />
+                                  </div>
 
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Contact Information</CardTitle>
-                  <CardDescription>
-                    Feel free to reach out through any of these channels.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  {contactInfo.map((info, index) => (
-                    <div key={index} className="flex items-center space-x-4">
-                      <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-                        {info.icon}
+                                  <div className="space-y-2">
+                                      <Label htmlFor="email">Email *</Label>
+                                      <Input
+                                          id="email"
+                                          name="email"
+                                          type="email"
+                                          value={formData.email}
+                                          onChange={handleChange}
+                                          required
+                                          disabled={isSubmitting}
+                                          placeholder="your.email@example.com"
+                                      />
+                                  </div>
+
+                                  <div className="space-y-2">
+                                      <Label htmlFor="subject">Subject *</Label>
+                                      <Input
+                                          id="subject"
+                                          name="subject"
+                                          value={formData.subject}
+                                          onChange={handleChange}
+                                          required
+                                          disabled={isSubmitting}
+                                          placeholder="What's this about?"
+                                      />
+                                  </div>
+
+                                  <div className="space-y-2">
+                                      <Label htmlFor="message">Message *</Label>
+                                      <Textarea
+                                          id="message"
+                                          name="message"
+                                          value={formData.message}
+                                          onChange={handleChange}
+                                          required
+                                          disabled={isSubmitting}
+                                          rows={5}
+                                          placeholder="Tell me about your project or inquiry..."
+                                      />
+                                  </div>
+
+                                  {/* Status Messages */}
+                                  {submitStatus === "success" && (
+                                      <Alert className="border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-200">
+                                          <CheckCircle className="h-4 w-4" />
+                                          <AlertDescription>
+                                              {statusMessage}
+                                          </AlertDescription>
+                                      </Alert>
+                                  )}
+
+                                  {submitStatus === "error" && (
+                                      <Alert className="border-red-200 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-200">
+                                          <AlertCircle className="h-4 w-4" />
+                                          <AlertDescription>
+                                              {statusMessage}
+                                          </AlertDescription>
+                                      </Alert>
+                                  )}
+
+                                  <Button
+                                      type="submit"
+                                      className="w-full"
+                                      disabled={isSubmitting}
+                                  >
+                                      {isSubmitting ? (
+                                          <>
+                                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                              Sending...
+                                          </>
+                                      ) : (
+                                          <>
+                                              <Send className="mr-2 h-4 w-4" />
+                                              Send Message
+                                          </>
+                                      )}
+                                  </Button>
+                              </form>
+                          </CardContent>
+                      </Card>
+
+                      {/* Contact Information */}
+                      <div className="space-y-8">
+                          <Card>
+                              <CardHeader>
+                                  <CardTitle>Contact Information</CardTitle>
+                                  <CardDescription>
+                                      Feel free to reach out through any of
+                                      these channels.
+                                  </CardDescription>
+                              </CardHeader>
+                              <CardContent className="space-y-6">
+                                  {contactInfo.map((info, index) => (
+                                      <div
+                                          key={index}
+                                          className="flex items-center space-x-4"
+                                      >
+                                          <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+                                              {info.icon}
+                                          </div>
+                                          <div>
+                                              <p className="text-sm text-muted-foreground">
+                                                  {info.label}
+                                              </p>
+                                              {info.href === "#" ? (
+                                                  <p>{info.value}</p>
+                                              ) : (
+                                                  <a
+                                                      href={info.href}
+                                                      className="hover:text-primary transition-colors"
+                                                  >
+                                                      {info.value}
+                                                  </a>
+                                              )}
+                                          </div>
+                                      </div>
+                                  ))}
+                              </CardContent>
+                          </Card>
+
+                          <Card>
+                              <CardHeader>
+                                  <CardTitle>Follow Me</CardTitle>
+                                  <CardDescription>
+                                      Connect with me on social media and
+                                      professional networks.
+                                  </CardDescription>
+                              </CardHeader>
+                              <CardContent>
+                                  <div className="flex space-x-4">
+                                      {socialLinks.map((social, index) => (
+                                          <a
+                                              key={index}
+                                              href={social.href}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className={`p-3 rounded-lg bg-secondary/50 text-muted-foreground transition-colors ${social.color}`}
+                                              title={social.label}
+                                          >
+                                              {social.icon}
+                                          </a>
+                                      ))}
+                                  </div>
+                              </CardContent>
+                          </Card>
+
+                          <Card>
+                              <CardContent className="pt-6">
+                                  <div className="text-center">
+                                      <h3 className="text-lg mb-2">
+                                          Available for Work
+                                      </h3>
+                                      <p className="text-muted-foreground text-sm mb-4">
+                                          I'm currently open to new
+                                          opportunities and freelance projects.
+                                      </p>
+                                      <Button asChild>
+                                          <a
+                                              href="https://drive.google.com/file/d/19zcaLwVOTHwAOmXU2pwwgZ6hAtBtWt_y/view?usp=sharing"
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="inline-flex items-center"
+                                          >
+                                              <svg
+                                                  className="w-4 h-4 mr-2"
+                                                  fill="none"
+                                                  stroke="currentColor"
+                                                  viewBox="0 0 24 24"
+                                              >
+                                                  <path
+                                                      strokeLinecap="round"
+                                                      strokeLinejoin="round"
+                                                      strokeWidth={2}
+                                                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                                  />
+                                              </svg>
+                                              Download Resume
+                                          </a>
+                                      </Button>
+                                  </div>
+                              </CardContent>
+                          </Card>
                       </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">{info.label}</p>
-                        {info.href === "#" ? (
-                          <p>{info.value}</p>
-                        ) : (
-                          <a 
-                            href={info.href} 
-                            className="hover:text-primary transition-colors"
-                          >
-                            {info.value}
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Follow Me</CardTitle>
-                  <CardDescription>
-                    Connect with me on social media and professional networks.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex space-x-4">
-                    {socialLinks.map((social, index) => (
-                      <a
-                        key={index}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`p-3 rounded-lg bg-secondary/50 text-muted-foreground transition-colors ${social.color}`}
-                        title={social.label}
-                      >
-                        {social.icon}
-                      </a>
-                    ))}
                   </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="text-center">
-                    <h3 className="text-lg mb-2">Available for Work</h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      I'm currently open to new opportunities and freelance projects.
-                    </p>
-                    <Button asChild>
-                      <a 
-                        href="https://drive.google.com/uc?export=download&id=1crrOHNxQ95VJ9fNAL4X45xM8kiiXF2zw" 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center"
-                      >
-                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        Download Resume
-                      </a>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              
-            </div>
+              </div>
           </div>
-        </div>
-      </div>
-    </section>
+      </section>
   );
 };
 
