@@ -25,6 +25,34 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: "EthioNLP",
+      description:
+        "An AI-powered NLP platform for Ethiopian languages, focused on supporting language processing workflows and research for Amharic and Tigrigna.",
+      image:
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800",
+      category: "AI / NLP",
+      technologies: [
+        "Python",
+        "Natural Language Processing",
+        "Machine Learning",
+        "AI",
+      ],
+      features: [
+        "Ethiopian language NLP workflows",
+        "Amharic and Tigrigna language support",
+        "Research-friendly language tooling",
+        "AI-assisted text processing",
+        "Open-source codebase",
+      ],
+      links: {
+        live: null,
+        github: "https://github.com/dag12y/ethionlp",
+      },
+      status: "In Progress",
+      featured: true,
+    },
+    {
+      id: 2,
       title: "Letter Hunt",
       description:
         "A fun and interactive word guessing game built with modern web technologies. Players guess letters to uncover hidden words within a limited number of attempts.",
@@ -53,7 +81,7 @@ const Projects = () => {
       featured: true,
     },
     {
-      id: 2,
+      id: 3,
       title: "Chat App",
       description:
         "A real-time chat application built with the MERN stack. Features instant messaging, user authentication, and a modern responsive interface for seamless communication.",
@@ -76,7 +104,7 @@ const Projects = () => {
       featured: true,
     },
     {
-      id: 3,
+      id: 4,
       title: "Tenzies",
       description:
         "A fast-paced dice game where players roll to match all dice to the same number. Built with React for a smooth user experience and interactive gameplay.",
@@ -99,7 +127,7 @@ const Projects = () => {
       featured: false,
     },
     {
-      id: 4,
+      id: 5,
       title: "Chef-AI",
       description:
         "An AI-powered recipe suggestion app that generates personalized cooking ideas based on available ingredients. Built with React and powered by modern AI APIs.",
@@ -127,7 +155,7 @@ const Projects = () => {
       featured: true,
     },
     {
-      id: 5,
+      id: 6,
       title: "Amharic-Tigrigna Analyser",
       description:
         "A linguistic analysis tool that processes Amharic and Tigrigna texts for morphological and syntactic insights. Designed to support language researchers and learners.",
@@ -159,6 +187,7 @@ const Projects = () => {
   ];
   const categories = [
     "All",
+    "AI / NLP",
     "Web Game", 
     "Web App",
     "Language Tool",
