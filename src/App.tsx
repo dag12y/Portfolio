@@ -7,6 +7,7 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Experience />
           <Contact />
         </main>
+        <Analytics />
 
         {/* Footer */}
         <footer className="bg-primary text-primary-foreground py-12 transition-colors duration-300">
