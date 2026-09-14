@@ -34,6 +34,7 @@ export const projects = [
     description:
       "A CLI and Docker sandbox that inspects npm packages before install, so teams can catch supply-chain risk early.",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200",
+    image: "/images/saferun.png",
     category: "Security",
     technologies: ["Go", "Docker", "Node.js"],
     links: {
