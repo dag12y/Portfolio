@@ -1,474 +1,125 @@
-import { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
-import {
-  ExternalLink,
-  Github,
-  Globe,
-  Smartphone,
-  Database,
-  Zap,
-  Users,
-  TrendingUp,
-  Star,
-} from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { projects } from "../data/content";
 
 const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "SafeRun",
-      description:
-        "A cross-platform security CLI and sandbox that analyzes npm packages in an isolated Docker environment before installation, protecting developers from software supply chain attacks.",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800",
-      category: "Security / CLI",
-      technologies: ["Go", "Docker", "Node.js", "npm", "Security", "CLI"],
-      features: [
-        "Isolated Docker sandbox package analysis",
-        "Pre-install lifecycle script inspection",
-        "Automated risk scoring & security reports",
-        "Configurable security policy enforcement",
-        "Project dependency scanning & local audit logs",
-      ],
-      links: {
-        live: "https://www.saferun.tech/",
-        github: "https://github.com/dag12y/saferun",
-      },
-      status: "Live",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "EthioNLP",
-      description:
-        "An AI-powered NLP platform for Ethiopian languages, focused on supporting language processing workflows and research for Amharic and Tigrigna.",
-      image:
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800",
-      category: "AI / NLP",
-      technologies: [
-        "Python",
-        "Natural Language Processing",
-        "Machine Learning",
-        "AI",
-      ],
-      features: [
-        "Ethiopian language NLP workflows",
-        "Amharic and Tigrigna language support",
-        "Research-friendly language tooling",
-        "AI-assisted text processing",
-        "Open-source codebase",
-      ],
-      links: {
-        live: null,
-        github: "https://github.com/dag12y/ethionlp",
-      },
-      status: "In Progress",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Letter Hunt",
-      description:
-        "A fun and interactive word guessing game built with modern web technologies. Players guess letters to uncover hidden words within a limited number of attempts.",
-      image: "https://i.postimg.cc/7LYmysFC/Screenshot-2025-07-17-212657.png",
-      category: "Web Game",
-      technologies: ["HTML", "CSS", "JavaScript", "Vite", "React"],
-      features: [
-        "Interactive word guessing gameplay",
-        "Responsive design for mobile and desktop",
-        "Clean and modern UI",
-        "Dynamic scoring system",
-        "Fast performance with Vite build tool",
-      ],
-      links: {
-        live: "https://letter-hunt.vercel.app/",
-        github: "https://github.com/dag12y/Letter-Hunt",
-      },
-      status: "Live",
-      featured: true,
-    },
-    {
-      id: 4,
-      title: "Chat App",
-      description:
-        "A real-time chat application built with the MERN stack. Features instant messaging, user authentication, and a modern responsive interface for seamless communication.",
-      image:
-        "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800",
-      category: "Web App",
-      technologies: [
-        "MongoDB",
-        "Express",
-        "React",
-        "Node.js",
-        "Socket.io",
-        "JWT",
-      ],
-      features: [
-        "Real-time messaging with Socket.io",
-        "User authentication and authorization",
-        "Responsive and modern UI",
-        "Message history persistence",
-        "Secure JWT-based authentication",
-      ],
-      links: {
-        live: null,
-        github: "https://github.com/dag12y/chat-app",
-      },
-      status: "Completed",
-      featured: true,
-    },
-    {
-      id: 5,
-      title: "Tenzies",
-      description:
-        "A fast-paced dice game where players roll to match all dice to the same number. Built with React for a smooth user experience and interactive gameplay.",
-      image: "https://i.postimg.cc/YCxbZKsK/Screenshot-2025-07-17-212026.png",
-      category: "Web Game",
-      technologies: ["React", "JavaScript", "CSS", "Vite"],
-      features: [
-        "Dice rolling mechanic",
-        "Game state persistence",
-        "Winning condition detection",
-        "Responsive and clean UI",
-        "Fast performance with Vite build tool",
-      ],
-      links: {
-        live: "https://tenzies-dagm.vercel.app/",
-        github: "https://github.com/dag12y/Tenzies",
-      },
-      status: "Live",
-      featured: false,
-    },
-    {
-      id: 6,
-      title: "Chef-AI",
-      description:
-        "An AI-powered recipe suggestion app that generates personalized cooking ideas based on available ingredients. Built with React and powered by modern AI APIs.",
-      image: "https://i.postimg.cc/L6xJbx3Q/image.png",
-      category: "Web App",
-      technologies: ["React", "JavaScript", "CSS", "AI APIs", "Vite"],
-      features: [
-        "AI-driven recipe generation",
-        "Ingredient-based search",
-        "User-friendly interface",
-        "Responsive design",
-        "Fast loading with Vite",
-      ],
-      links: {
-        live: "https://chef-ai-two.vercel.app/",
-        github: "https://github.com/dag12y/Chef-AI",
-      },
-      status: "Live",
-      featured: true,
-    },
-    {
-      id: 7,
-      title: "Amharic-Tigrigna Analyser",
-      description:
-        "A linguistic analysis tool that processes Amharic and Tigrigna texts for morphological and syntactic insights. Designed to support language researchers and learners.",
-      image: "https://i.postimg.cc/PxzDrZBC/Screenshot-2025-07-17-220555.png",
-      category: "Language Tool",
-      technologies: [
-        "Python",
-        "Natural Language Processing",
-        "Machine Learning",
-        "Flask",
-        "JavaScript",
-      ],
-      features: [
-        "Morphological analysis",
-        "Syntactic parsing",
-        "Text tokenization",
-        "Frequency distribution analysis",
-        "User-friendly interface",
-      ],
-      links: {
-        live: null,
-        github: "https://github.com/dag12y/amharic-tigrigna-analyser",
-      },
-      status: "Completed",
-      featured: true,
-    },
-  ];
-  const categories = [
-    "All",
-    "Security / CLI",
-    "AI / NLP",
-    "Web Game",
-    "Web App",
-    "Language Tool",
-  ];
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projects
-      : projects.filter((project) => project.category === selectedCategory);
-
-  const featuredProjects = projects.filter((project) => project.featured);
+  const featured = projects.filter((project) => project.featured);
+  const rest = projects.filter((project) => !project.featured);
 
   return (
-    <section id="projects" className="py-20 bg-secondary/10 scroll-mt-16">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl mb-6">
-              Featured Projects
+    <section id="work" className="scroll-mt-20 py-8 md:py-12">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-12 flex items-end justify-between gap-6">
+          <div>
+            <p className="mb-3 text-sm tracking-[0.22em] text-warm uppercase">
+              Work
+            </p>
+            <h2 className="font-serif text-4xl tracking-tight md:text-5xl">
+              Selected projects
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              A showcase of my recent work and technical expertise across
-              different domains and technologies.
+          </div>
+            <p className="hidden max-w-xs text-right text-sm text-muted-foreground md:block">
+              Featured work in full; smaller pieces below.
             </p>
-          </div>
+        </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category)}
-                className="mb-2"
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-
-          {/* Featured Projects */}
-          {selectedCategory === "All" && (
-            <div className="mb-16">
-              <h3 className="text-2xl md:text-3xl text-center mb-8">
-                🌟 Featured Projects
-              </h3>
-              <div className="grid lg:grid-cols-2 gap-8">
-                {featuredProjects.map((project) => (
-                  <Card
-                    key={project.id}
-                    className="group hover:shadow-xl transition-all duration-300"
-                  >
-                    <div className="relative overflow-hidden">
-                      <ImageWithFallback
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute top-4 right-4">
-                        <Badge
-                          variant="secondary"
-                          className="bg-primary/90 text-primary-foreground"
-                        >
-                          <Star className="h-3 w-3 mr-1" />
-                          Featured
-                        </Badge>
-                      </div>
-                    </div>
-                    <CardHeader>
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-xl">
-                            {project.title}
-                          </CardTitle>
-                          <CardDescription className="mt-2">
-                            {project.description}
-                          </CardDescription>
-                        </div>
-                        <Badge variant="outline">{project.category}</Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="flex flex-wrap gap-2">
-                          {project.technologies.map((tech, index) => (
-                            <Badge
-                              key={index}
-                              variant="secondary"
-                              className="text-xs"
-                            >
-                              {tech}
-                            </Badge>
-                          ))}
-                        </div>
-
-                        <div className="flex gap-2 pt-4">
-                          {project.links.live ? (
-                            <Button asChild size="sm" className="flex-1">
-                              <a
-                                href={project.links.live}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <ExternalLink className="h-4 w-4 mr-2" />
-                                Live Demo
-                              </a>
-                            </Button>
-                          ) : (
-                            <Button
-                              size="sm"
-                              variant="secondary"
-                              className="flex-1 opacity-70"
-                              disabled
-                            >
-                              <ExternalLink className="h-4 w-4 mr-2" />
-                              {project.category.includes("AI") ||
-                              project.category.includes("Language")
-                                ? "Model / Tool"
-                                : "Repo Only"}
-                            </Button>
-                          )}
-                          <Button
-                            asChild
-                            variant="outline"
-                            size="sm"
-                            className="flex-1"
-                          >
-                            <a
-                              href={project.links.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Github className="h-4 w-4 mr-2" />
-                              Code
-                            </a>
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* All Projects */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
-              <Card
-                key={project.id}
-                className="group hover:shadow-lg transition-all duration-300"
-              >
-                <div className="relative overflow-hidden">
-                  <ImageWithFallback
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <Badge
-                      variant={
-                        project.status === "Live" ? "default" : "secondary"
-                      }
-                      className={
-                        project.status === "Live" ? "bg-green-500" : ""
-                      }
-                    >
-                      {project.status}
-                    </Badge>
-                  </div>
-                </div>
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <CardTitle className="text-lg">{project.title}</CardTitle>
-                    <Badge variant="outline" className="text-xs">
-                      {project.category}
-                    </Badge>
-                  </div>
-                  <CardDescription className="text-sm">
-                    {project.description.substring(0, 100)}...
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap gap-1">
-                      {project.technologies.slice(0, 3).map((tech, index) => (
-                        <Badge
-                          key={index}
-                          variant="secondary"
-                          className="text-xs"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                      {project.technologies.length > 3 && (
-                        <Badge variant="secondary" className="text-xs">
-                          +{project.technologies.length - 3}
-                        </Badge>
-                      )}
-                    </div>
-
-                    <div className="flex gap-2">
-                      {project.links.live ? (
-                        <Button asChild size="sm" className="flex-1">
-                          <a
-                            href={project.links.live}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <ExternalLink className="h-3 w-3 mr-1" />
-                            Demo
-                          </a>
-                        </Button>
-                      ) : (
-                        <Button
-                          size="sm"
-                          variant="secondary"
-                          className="flex-1 opacity-70"
-                          disabled
-                        >
-                          <ExternalLink className="h-3 w-3 mr-1" />
-                          {project.category.includes("AI") ||
-                          project.category.includes("Language")
-                            ? "Model"
-                            : "Repo"}
-                        </Button>
-                      )}
-                      <Button
-                        asChild
-                        variant="outline"
-                        size="sm"
-                        className="flex-1"
-                      >
-                        <a
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="h-3 w-3 mr-1" />
-                          Code
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-16">
-            <h3 className="text-2xl mb-4">Interested in Working Together?</h3>
-            <p className="text-muted-foreground mb-6">
-              I'm always open to discussing new projects and opportunities.
-            </p>
-            <Button
-              size="lg"
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+        <div className="space-y-16">
+          {featured.map((project, index) => (
+            <article
+              key={project.id}
+              className="grid items-center gap-8 lg:grid-cols-2"
             >
-              Get In Touch
-            </Button>
-          </div>
+              <div
+                className={`overflow-hidden rounded-2xl border border-border bg-card ${
+                  index % 2 === 1 ? "lg:order-2" : ""
+                }`}
+              >
+                <ImageWithFallback
+                  src={project.image}
+                  alt={project.title}
+                  className="h-64 w-full object-cover sm:h-80"
+                />
+              </div>
+              <div>
+                <p className="text-xs tracking-[0.18em] text-muted-foreground uppercase">
+                  {project.category} · {project.status}
+                </p>
+                <h3 className="font-serif mt-3 text-3xl">{project.title}</h3>
+                <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full bg-secondary px-3 py-1 text-xs"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-6 flex gap-5 text-sm">
+                  {project.links.live && (
+                    <a
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-warm hover:underline underline-offset-4"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Live
+                    </a>
+                  )}
+                  <a
+                    href={project.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground"
+                  >
+                    <Github className="h-4 w-4" />
+                    Code
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-20 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
+          {rest.map((project) => (
+            <article
+              key={project.id}
+              className="bg-background p-6 transition-colors hover:bg-card"
+            >
+              <p className="text-xs tracking-[0.16em] text-muted-foreground uppercase">
+                {project.category}
+              </p>
+              <h3 className="font-serif mt-2 text-2xl">{project.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {project.description}
+              </p>
+              <div className="mt-5 flex gap-4 text-sm">
+                {project.links.live && (
+                  <a
+                    href={project.links.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-warm hover:underline underline-offset-4"
+                  >
+                    Live
+                  </a>
+                )}
+                <a
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Code
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

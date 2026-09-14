@@ -1,95 +1,73 @@
-import { Button } from './ui/button';
-import { Github, Linkedin, Mail, Download } from 'lucide-react';
+import { lazy, Suspense } from "react";
+import { ArrowDownRight, Github, Linkedin, Mail } from "lucide-react";
+import { profile } from "../data/content";
+
+const Scene3D = lazy(() => import("./Scene3D"));
 
 const Hero = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-      <section
-          id="home"
-          className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-secondary/20"
-      >
-          <div className="container mx-auto px-4 text-center">
-              <div className="max-w-4xl mx-auto">
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                      Dagm Yibabe
-                  </h1>
-                  <h2 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-8">
-                      Software Developer
-                  </h2>
-                  <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-                      Passionate about creating innovative web applications and
-                      solving complex problems with clean, efficient code.
-                      Specializing in React, Node.js, and modern web
-                      technologies.
-                  </p>
+    <section
+      id="home"
+      className="relative isolate flex min-h-screen items-center overflow-hidden"
+    >
+      <Suspense fallback={null}>
+        <Scene3D />
+      </Suspense>
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-background/10 via-background/50 to-background" />
 
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                      <Button
-                          size="lg"
-                          onClick={() => scrollToSection("projects")}
-                          className="w-full sm:w-auto"
-                      >
-                          View My Work
-                      </Button>
-                      <Button
-                          variant="outline"
-                          size="lg"
-                          onClick={() => scrollToSection("contact")}
-                          className="w-full sm:w-auto"
-                      >
-                          <Mail className="mr-2 h-5 w-5" />
-                          Get In Touch
-                      </Button>
-                  </div>
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pt-28 pb-20">
+        <p className="mb-6 text-sm tracking-[0.28em] text-warm uppercase">
+          {profile.role}
+        </p>
+        <h1 className="font-serif max-w-3xl text-5xl leading-[1.05] tracking-tight sm:text-7xl lg:text-8xl">
+          {profile.name}
+        </h1>
+        <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          {profile.summary}
+        </p>
 
-                  <div className="flex justify-center items-center space-x-6">
-                      <a
-                          href="https://github.com/dag12y"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                          <Github className="h-6 w-6" />
-                      </a>
-                      <a
-                          href="https://www.linkedin.com/in/dagm-yibabe-46b85b353/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                          <Linkedin className="h-6 w-6" />
-                      </a>
-                      <a
-                          href="mailto:dagimyibabe19@gmail.com"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                          <Mail className="h-6 w-6" />
-                      </a>
-                      <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-muted-foreground hover:text-primary"
-                          asChild
-                      >
-                          <a
-                              href="https://drive.google.com/file/d/19zcaLwVOTHwAOmXU2pwwgZ6hAtBtWt_y/view?usp=sharing"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                          >
-                              <Download className="mr-2 h-4 w-4" />
-                              Resume
-                          </a>
-                      </Button>
-                  </div>
-              </div>
+        <div className="mt-10 flex flex-wrap items-center gap-6">
+          <button
+            onClick={() =>
+              document
+                .getElementById("work")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm text-primary-foreground"
+          >
+            Selected work
+            <ArrowDownRight className="h-4 w-4" />
+          </button>
+          <div className="flex items-center gap-4 text-muted-foreground">
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="hover:text-foreground"
+            >
+              <Github className="h-5 w-5" />
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="hover:text-foreground"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
+            <a
+              href={`mailto:${profile.email}`}
+              aria-label="Email"
+              className="hover:text-foreground"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
           </div>
-      </section>
+        </div>
+      </div>
+    </section>
   );
 };
 

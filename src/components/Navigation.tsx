@@ -1,91 +1,85 @@
-import { useState, useEffect } from 'react';
-import { Button } from './ui/button';
-import { ThemeToggle } from './ThemeToggle';
-import { Menu, X } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { ThemeToggle } from "./ThemeToggle";
+import { Menu, X } from "lucide-react";
+
+const navItems = [
+  { id: "work", label: "Work" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Path" },
+  { id: "contact", label: "Contact" },
+];
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false);
   };
 
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'contact', label: 'Contact' },
-  ];
-
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-background/95 backdrop-blur-sm border-b' : 'bg-transparent'
-    }`}>
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          <div className="cursor-pointer" onClick={() => scrollToSection('home')}>
-            <span className="text-xl font-semibold text-primary">DevPortfolio</span>
-          </div>
+    <nav
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "border-b border-border/80 bg-background/80 backdrop-blur-md"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <button
+          onClick={() => scrollToSection("home")}
+          className="font-serif text-xl tracking-tight"
+        >
+          DY
+        </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden items-center gap-8 md:flex">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {item.label}
+            </button>
+          ))}
+          <ThemeToggle />
+        </div>
+
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
+          <button
+            className="rounded-full p-2 text-foreground"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
+
+      {isOpen && (
+        <div className="border-t border-border bg-background px-6 py-4 md:hidden">
+          <div className="flex flex-col gap-3">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-foreground hover:text-primary transition-colors cursor-pointer"
+                className="text-left text-sm text-muted-foreground"
               >
                 {item.label}
               </button>
             ))}
-            <ThemeToggle />
-          </div>
-
-          {/* Mobile Navigation Toggle and Theme Toggle */}
-          <div className="flex items-center space-x-2 md:hidden">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
           </div>
         </div>
-
-        {/* Mobile Navigation Menu */}
-        {isOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t pt-4">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-left text-foreground hover:text-primary transition-colors cursor-pointer"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
+      )}
     </nav>
   );
 };

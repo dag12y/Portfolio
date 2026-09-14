@@ -30,7 +30,6 @@
     "@radix-ui/react-toggle": "^1.1.2",
     "@radix-ui/react-toggle-group": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
-    "@tailwindcss/vite": "*",
     "@vitejs/plugin-react": "*",
     "class-variance-authority": "^0.7.1",
     "clsx": "*",
@@ -47,12 +46,16 @@
     "recharts": "^2.15.2",
     "sonner": "^2.0.3",
     "tailwind-merge": "*",
+    "three": "^0.186.0",
     "vaul": "^1.1.2",
     "vite": "*"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^20.10.0",
+    "@types/three": "^0.186.0",
     "@vitejs/plugin-react-swc": "^3.10.2",
+    "tailwindcss": "^4.3.3",
     "vite": "6.3.5"
   },
   "scripts": {
