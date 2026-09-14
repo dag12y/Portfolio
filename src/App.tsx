@@ -6,6 +6,7 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import { profile } from "./data/content";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Experience />
           <Contact />
         </main>
+        <Analytics />
         <footer className="border-t border-border py-8">
           <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 px-6 text-sm text-muted-foreground sm:flex-row sm:items-center">
             <p>
