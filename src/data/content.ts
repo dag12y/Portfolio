@@ -33,13 +33,27 @@ export const projects = [
     title: "SafeRun",
     description:
       "A CLI and Docker sandbox that inspects npm packages before install, so teams can catch supply-chain risk early.",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200",
     image: "/images/saferun.png",
     category: "Security",
     technologies: ["Go", "Docker", "Node.js"],
     links: {
       live: "https://www.saferun.tech/",
       github: "https://github.com/dag12y/saferun",
+    },
+    status: "Live",
+    featured: true,
+  },
+  {
+    id: 8,
+    title: "DevPulse",
+    description:
+      "A lightweight, privacy-conscious web analytics platform for developers featuring real-time tracking, workspace isolation, and zero cookies or fingerprinting.",
+    image: "/images/devpulse.png",
+    category: "Analytics",
+    technologies: ["Go", "Next.js", "TypeScript", "PostgreSQL", "Docker"],
+    links: {
+      live: "https://devpulseanalytics.vercel.app/",
+      github: "https://github.com/dag12y/DevPulse",
     },
     status: "Live",
     featured: true,

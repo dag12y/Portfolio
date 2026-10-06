@@ -1,4 +1,4 @@
-import { profile, skills } from "../data/content";
+import { profile, skills, projects } from "../data/content";
 
 const About = () => {
   return (
@@ -33,7 +33,7 @@ const About = () => {
               <p className="mt-1 text-xs text-muted-foreground">Years building</p>
             </div>
             <div>
-              <p className="font-serif text-3xl">7</p>
+              <p className="font-serif text-3xl">{projects.length}</p>
               <p className="mt-1 text-xs text-muted-foreground">Shown here</p>
             </div>
             <div>
