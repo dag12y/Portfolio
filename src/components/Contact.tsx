@@ -13,6 +13,8 @@ import {
   Loader2,
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { Reveal } from "./Reveal";
+import { SectionHeader } from "./SectionHeader";
 import { profile } from "../data/content";
 
 const Contact = () => {
@@ -82,52 +84,66 @@ const Contact = () => {
     <section id="contact" className="scroll-mt-20 border-t border-border py-24">
       <div className="mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-2">
         <div>
-          <p className="mb-3 text-sm tracking-[0.22em] text-warm uppercase">
-            Contact
-          </p>
-          <h2 className="font-serif text-4xl tracking-tight md:text-5xl">
-            Say hello
-          </h2>
-          <p className="mt-6 max-w-sm text-muted-foreground">
+          <SectionHeader
+            eyebrow="Contact"
+            title="Say hello"
+            className="mb-6"
+          />
+          <p className="max-w-sm text-muted-foreground">
             Open to internships, collaborations, and interesting problems.
           </p>
 
-          <ul className="mt-10 space-y-4 text-sm">
-            <li>
-              <a
-                href={`mailto:${profile.email}`}
-                className="inline-flex items-center gap-3 hover:text-warm"
-              >
-                <Mail className="h-4 w-4" />
-                {profile.email}
-              </a>
-            </li>
-            <li>
-              <a
-                href={profile.phoneHref}
-                className="inline-flex items-center gap-3 hover:text-warm"
-              >
-                <Phone className="h-4 w-4" />
-                {profile.phone}
-              </a>
-            </li>
-            <li className="inline-flex items-center gap-3 text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              {profile.location}
-            </li>
-          </ul>
+          <Reveal delay={100}>
+            <ul className="mt-10 space-y-4 text-sm">
+              <li>
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="group inline-flex items-center gap-3 transition-colors duration-300 hover:text-warm"
+                >
+                  <Mail className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                  {profile.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={profile.phoneHref}
+                  className="group inline-flex items-center gap-3 transition-colors duration-300 hover:text-warm"
+                >
+                  <Phone className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
+                  {profile.phone}
+                </a>
+              </li>
+              <li className="inline-flex items-center gap-3 text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                {profile.location}
+              </li>
+            </ul>
 
-          <div className="mt-8 flex gap-4">
-            <a href={profile.github} target="_blank" rel="noopener noreferrer">
-              <Github className="h-5 w-5 text-muted-foreground hover:text-foreground" />
-            </a>
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-              <Linkedin className="h-5 w-5 text-muted-foreground hover:text-foreground" />
-            </a>
-          </div>
+            <div className="mt-8 flex gap-2">
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="rounded-full p-2 text-muted-foreground transition-colors duration-300 hover:bg-accent hover:text-foreground"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="rounded-full p-2 text-muted-foreground transition-colors duration-300 hover:bg-accent hover:text-foreground"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div>
+          </Reveal>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <Reveal delay={150}>
+          <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input
@@ -177,9 +193,9 @@ const Contact = () => {
 
           {submitStatus !== "idle" && (
             <p
-              className={
-                submitStatus === "success" ? "text-sm" : "text-sm text-destructive"
-              }
+              className={`fade-up-in text-sm ${
+                submitStatus === "success" ? "" : "text-destructive"
+              }`}
             >
               {statusMessage}
             </p>
@@ -198,7 +214,8 @@ const Contact = () => {
               </>
             )}
           </Button>
-        </form>
+          </form>
+        </Reveal>
       </div>
     </section>
   );

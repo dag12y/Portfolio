@@ -79,6 +79,9 @@
 
   html {
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--warm) 40%, transparent)
+      var(--background);
   }
 
   body {
@@ -91,14 +94,79 @@
   ::selection {
     background: color-mix(in oklab, var(--warm) 35%, transparent);
   }
+
+  :focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--warm) 65%, transparent);
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--warm) 40%, transparent);
+    border: 2px solid var(--background);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklab, var(--warm) 65%, transparent);
+  }
 }
 
 @utility font-serif {
   font-family: var(--font-serif);
 }
 
+/* Scroll reveal: elements start hidden, .reveal-visible fades them in. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mount-time entrance (hero). */
+@keyframes fade-up-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up-in {
+  animation: fade-up-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .fade-up-in {
+    animation: none;
   }
 }

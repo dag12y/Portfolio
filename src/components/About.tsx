@@ -1,17 +1,26 @@
+import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "./Reveal";
+import { SectionHeader } from "./SectionHeader";
 import { profile, skills, projects } from "../data/content";
+
+/** Year Dagm started building software — used to calculate the years stat. */
+const START_YEAR = 2022;
+const yearsBuilding = Math.max(new Date().getFullYear() - START_YEAR, 1);
 
 const About = () => {
   return (
     <section id="about" className="scroll-mt-20 border-t border-border py-24">
       <div className="mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
-          <p className="mb-3 text-sm tracking-[0.22em] text-warm uppercase">
-            About
-          </p>
-          <h2 className="font-serif text-4xl tracking-tight md:text-5xl">
-            Building software that stays useful.
-          </h2>
-          <div className="mt-8 space-y-4 text-muted-foreground leading-relaxed">
+          <SectionHeader
+            eyebrow="About"
+            title="Building software that stays useful."
+            className="mb-8"
+          />
+          <Reveal
+            delay={100}
+            className="space-y-4 text-muted-foreground leading-relaxed"
+          >
             <p>
               I’m a software developer and electrical engineering student. I
               care about tools people actually use: security sandboxes, language
@@ -23,13 +32,13 @@ const About = () => {
               community work at SkillBridge. When I’m not shipping, I’m usually
               learning — currently around ML, Rust, and cloud.
             </p>
-          </div>
+          </Reveal>
         </div>
 
         <div className="flex flex-col justify-between gap-10">
-          <div className="grid grid-cols-3 gap-6 border-y border-border py-8">
+          <Reveal className="grid grid-cols-3 gap-6 border-y border-border py-8">
             <div>
-              <p className="font-serif text-3xl">3+</p>
+              <p className="font-serif text-3xl">{yearsBuilding}+</p>
               <p className="mt-1 text-xs text-muted-foreground">Years building</p>
             </div>
             <div>
@@ -40,15 +49,15 @@ const About = () => {
               <p className="font-serif text-3xl">AAU</p>
               <p className="mt-1 text-xs text-muted-foreground">ECE student</p>
             </div>
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={100}>
             <p className="mb-4 text-sm text-muted-foreground">Stack I reach for</p>
             <div className="flex flex-wrap gap-2">
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="rounded-full border border-border px-3 py-1 text-sm"
+                  className="rounded-full border border-border px-3 py-1 text-sm transition-colors duration-300 hover:border-warm/50 hover:bg-accent hover:text-foreground"
                 >
                   {skill}
                 </span>
@@ -58,11 +67,12 @@ const About = () => {
               href={profile.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-block text-sm text-warm underline-offset-4 hover:underline"
+              className="group mt-8 inline-flex items-center gap-1.5 text-sm text-warm underline-offset-4 hover:underline"
             >
               Resume
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

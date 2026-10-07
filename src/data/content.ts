@@ -1,7 +1,7 @@
 export const profile = {
   name: "Dagm Yibabe",
   role: "Software developer",
-  location: "Debre Berhan, Ethiopia",
+  location: "Addis Ababa, Ethiopia",
   email: "dagimyibabe19@gmail.com",
   phone: "+251-97-913-5593",
   phoneHref: "tel:+251979135593",
