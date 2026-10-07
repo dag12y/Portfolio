@@ -30,8 +30,8 @@ const Scene3D = () => {
     renderer.domElement.style.display = "block";
     container.appendChild(renderer.domElement);
 
-    const accent = theme === "dark" ? 0xe8c39e : 0x8c6b4a;
-    const mute = theme === "dark" ? 0x7d8a82 : 0x5c6b63;
+    const accent = theme === "dark" ? 0x818cf8 : 0x4f46e5;
+    const mute = theme === "dark" ? 0x64748b : 0x475569;
 
     const group = new THREE.Group();
     scene.add(group);
