@@ -111,7 +111,6 @@ export default function App() {
             <p>
               © {new Date().getFullYear()} {profile.name}
             </p>
-            <p>Designed & built with React, Tailwind CSS, and Three.js</p>
           </div>
         </footer>
       </div>
