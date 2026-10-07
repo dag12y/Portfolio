@@ -4,7 +4,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import {
-  Mail,
+  ArrowUpRight,
   Phone,
   MapPin,
   Github,
@@ -81,29 +81,32 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="scroll-mt-20 border-t border-border py-24">
-      <div className="mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-2">
+    <section
+      id="contact"
+      className="scroll-mt-20 border-t border-border py-24 md:py-32"
+    >
+      <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:gap-16">
         <div>
           <SectionHeader
             eyebrow="Contact"
             title="Say hello"
+            index="04"
             className="mb-6"
           />
           <p className="max-w-sm text-muted-foreground">
             Open to internships, collaborations, and interesting problems.
           </p>
 
+          <a
+            href={`mailto:${profile.email}`}
+            className="group mt-8 inline-flex max-w-full items-center gap-2 break-words font-serif text-2xl text-warm transition-colors duration-300 hover:text-foreground sm:text-3xl"
+          >
+            {profile.email}
+            <ArrowUpRight className="h-5 w-5 shrink-0 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+          </a>
+
           <Reveal delay={100}>
-            <ul className="mt-10 space-y-4 text-sm">
-              <li>
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="group inline-flex items-center gap-3 transition-colors duration-300 hover:text-warm"
-                >
-                  <Mail className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
-                  {profile.email}
-                </a>
-              </li>
+            <ul className="mt-8 space-y-4 text-sm">
               <li>
                 <a
                   href={profile.phoneHref}
@@ -143,7 +146,10 @@ const Contact = () => {
         </div>
 
         <Reveal delay={150}>
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5 rounded-2xl border border-border bg-card p-6 md:p-8"
+          >
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input

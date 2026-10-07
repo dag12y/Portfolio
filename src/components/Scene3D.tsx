@@ -148,7 +148,7 @@ const Scene3D = () => {
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none absolute inset-0 z-0"
+      className="pointer-events-none absolute inset-0 z-0 lg:left-[42%]"
       aria-hidden
     />
   );

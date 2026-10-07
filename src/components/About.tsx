@@ -9,14 +9,44 @@ const yearsBuilding = Math.max(new Date().getFullYear() - START_YEAR, 1);
 
 const About = () => {
   return (
-    <section id="about" className="scroll-mt-20 border-t border-border py-24">
-      <div className="mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
-          <SectionHeader
-            eyebrow="About"
-            title="Building software that stays useful."
-            className="mb-8"
-          />
+    <section
+      id="about"
+      className="scroll-mt-20 border-t border-border py-24 md:py-32"
+    >
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionHeader
+          eyebrow="About"
+          title="Building software that stays useful."
+          index="02"
+          className="mb-12"
+        />
+
+        <Reveal className="grid grid-cols-3 divide-x divide-border border-y border-border">
+          <div className="px-4 py-8 first:pl-0 last:pr-0 md:py-10">
+            <p className="font-serif text-4xl tracking-tight md:text-5xl">
+              {yearsBuilding}+
+            </p>
+            <p className="mt-2 text-xs tracking-[0.14em] text-muted-foreground uppercase">
+              Years building
+            </p>
+          </div>
+          <div className="px-4 py-8 first:pl-0 last:pr-0 md:py-10">
+            <p className="font-serif text-4xl tracking-tight md:text-5xl">
+              {projects.length}
+            </p>
+            <p className="mt-2 text-xs tracking-[0.14em] text-muted-foreground uppercase">
+              Projects shown
+            </p>
+          </div>
+          <div className="px-4 py-8 first:pl-0 last:pr-0 md:py-10">
+            <p className="font-serif text-4xl tracking-tight md:text-5xl">AAU</p>
+            <p className="mt-2 text-xs tracking-[0.14em] text-muted-foreground uppercase">
+              ECE student
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="mt-12 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <Reveal
             delay={100}
             className="space-y-4 text-muted-foreground leading-relaxed"
@@ -32,23 +62,6 @@ const About = () => {
               community work at SkillBridge. When I’m not shipping, I’m usually
               learning — currently around ML, Rust, and cloud.
             </p>
-          </Reveal>
-        </div>
-
-        <div className="flex flex-col justify-between gap-10">
-          <Reveal className="grid grid-cols-3 gap-6 border-y border-border py-8">
-            <div>
-              <p className="font-serif text-3xl">{yearsBuilding}+</p>
-              <p className="mt-1 text-xs text-muted-foreground">Years building</p>
-            </div>
-            <div>
-              <p className="font-serif text-3xl">{projects.length}</p>
-              <p className="mt-1 text-xs text-muted-foreground">Shown here</p>
-            </div>
-            <div>
-              <p className="font-serif text-3xl">AAU</p>
-              <p className="mt-1 text-xs text-muted-foreground">ECE student</p>
-            </div>
           </Reveal>
 
           <Reveal delay={100}>

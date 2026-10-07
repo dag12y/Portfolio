@@ -6,6 +6,8 @@ interface SectionHeaderProps {
   title: string;
   description?: string;
   className?: string;
+  /** Editorial section number, e.g. "01". */
+  index?: string;
 }
 
 const SectionHeader = ({
@@ -13,13 +15,22 @@ const SectionHeader = ({
   title,
   description,
   className = "mb-12",
+  index,
 }: SectionHeaderProps) => {
   return (
     <Reveal
       className={cn("flex items-end justify-between gap-6", className)}
     >
       <div>
-        <p className="mb-3 text-sm tracking-[0.22em] text-warm uppercase">
+        <p className="mb-3 flex items-center gap-2 text-sm tracking-[0.22em] text-warm uppercase">
+          {index ? (
+            <>
+              <span className="text-warm/50">{index}</span>
+              <span aria-hidden className="text-warm/30">
+                /
+              </span>
+            </>
+          ) : null}
           {eyebrow}
         </p>
         <h2 className="font-serif text-4xl tracking-tight md:text-5xl">

@@ -55,84 +55,86 @@ const Navigation = () => {
   };
 
   return (
-    <nav
-      className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300",
-        scrolled
-          ? "border-b border-border/80 bg-background/80 backdrop-blur-md"
-          : "bg-transparent",
-      )}
-    >
-      {progress > 0 && (
+    <nav className="fixed top-0 z-50 w-full">
+      <div className="mx-auto w-full max-w-6xl px-4 pt-4">
         <div
-          className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-warm transition-transform duration-100 ease-out"
-          style={{ transform: `scaleX(${progress})` }}
-          aria-hidden
-        />
-      )}
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <button
-          onClick={() => scrollToSection("home")}
-          className="font-serif text-xl tracking-tight transition-colors duration-300 hover:text-warm"
+          className={cn(
+            "relative flex items-center justify-between overflow-hidden rounded-full border px-5 py-2.5 backdrop-blur-md transition-all duration-300",
+            scrolled
+              ? "border-border/80 bg-background/90 shadow-lg shadow-black/5"
+              : "border-border/50 bg-background/60",
+          )}
         >
-          DY
-        </button>
-
-        <div className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={cn(
-                "relative text-sm transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-warm after:transition-transform after:duration-300",
-                activeSection === item.id
-                  ? "text-foreground after:scale-x-100"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
-            >
-              {item.label}
-            </button>
-          ))}
-          <ThemeToggle />
-        </div>
-
-        <div className="flex items-center gap-1 md:hidden">
-          <ThemeToggle />
+          {progress > 0 && (
+            <div
+              className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-warm transition-transform duration-100 ease-out"
+              style={{ transform: `scaleX(${progress})` }}
+              aria-hidden
+            />
+          )}
           <button
-            className="rounded-full p-2 text-foreground"
-            onClick={() => setIsOpen((open) => !open)}
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
+            onClick={() => scrollToSection("home")}
+            className="font-serif text-xl tracking-tight transition-colors duration-300 hover:text-warm"
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            DY
           </button>
-        </div>
-      </div>
 
-      <div
-        className={cn(
-          "overflow-hidden transition-all duration-300 ease-in-out md:hidden",
-          isOpen
-            ? "visible max-h-72 opacity-100"
-            : "invisible max-h-0 opacity-0",
-        )}
-      >
-        <div className="border-t border-border bg-background px-6 py-4">
-          <div className="flex flex-col gap-3">
+          <div className="hidden items-center gap-2 md:flex">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
-                  "text-left text-sm transition-colors duration-300",
+                  "rounded-full px-3 py-1.5 text-sm transition-colors duration-300",
                   activeSection === item.id
-                    ? "text-warm"
+                    ? "bg-accent text-foreground"
                     : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {item.label}
               </button>
             ))}
+            <ThemeToggle />
+          </div>
+
+          <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
+            <button
+              className="rounded-full p-2 text-foreground"
+              onClick={() => setIsOpen((open) => !open)}
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+
+        <div
+          className={cn(
+            "overflow-hidden transition-all duration-300 ease-in-out md:hidden",
+            isOpen
+              ? "visible max-h-72 opacity-100"
+              : "invisible max-h-0 opacity-0",
+          )}
+        >
+          <div className="mt-2 rounded-3xl border border-border bg-background/95 px-5 py-4 backdrop-blur-md">
+            <div className="flex flex-col gap-1">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={cn(
+                    "rounded-lg px-2 py-1.5 text-left text-sm transition-colors duration-300",
+                    activeSection === item.id
+                      ? "bg-accent text-foreground"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>

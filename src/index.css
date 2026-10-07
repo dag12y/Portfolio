@@ -155,6 +155,29 @@
   animation: fade-up-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Scroll indicator line. */
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  50.01% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+.animate-scroll-line {
+  animation: scroll-line 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -166,7 +189,9 @@
     transition: none;
   }
 
-  .fade-up-in {
+  .fade-up-in,
+  .animate-scroll-line,
+  .animate-ping {
     animation: none;
   }
 }
